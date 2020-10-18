@@ -25,6 +25,15 @@ function Formulario() {
 
     const subirData = async (e) => {
         e.preventDefault();
+
+        if (archivo.size > 2000000) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Tamaño Maximo 2MB',
+            showConfirmButton: true,
+            timer: 3500
+          })
+        }
     
         // formdata para subir archivos y string y number
         const formData = new FormData()
@@ -35,7 +44,7 @@ function Formulario() {
         try {
             const res = await clienteAxios.post("/upload", formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                 'Content-Type': 'multipart/form-data'
                 }
             });
             console.log(res);
@@ -55,7 +64,7 @@ function Formulario() {
     <div className="mt-5">
       <Form onSubmit={subirData}>
         <Form.Group>
-          <Form.Label>title</Form.Label>
+          <Form.Label >title</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter title"
