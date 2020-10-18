@@ -28,8 +28,8 @@ function Formulario() {
     
         // formdata para subir archivos y string y number
         const formData = new FormData()
-        // formData.append('nombre', dataProducto.nombre)
-        formData.append('description', data.descripcion)
+        formData.append('title', data.title)
+        formData.append('description', data.description)
         formData.append('image', archivo)
     
         try {
@@ -60,6 +60,7 @@ function Formulario() {
             type="text"
             placeholder="Enter title"
             onChange={obtenerData}
+            name='title'
             value={title}
           />
         </Form.Group>
@@ -72,7 +73,7 @@ function Formulario() {
         <Form.Group>
           <Form.Label>description</Form.Label>
           <textarea
-            name="descripcion"
+            name="description"
             rows="4"
             className="form-control"
             onChange={obtenerData}

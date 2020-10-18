@@ -17,6 +17,7 @@ exports.postImage = async (req, res) => {
 
         res.json({ ok: true, message: "file subido successfully" });
         console.log(image);
+        await image.save()
  } catch (error) {
      res.send(error)
  }
