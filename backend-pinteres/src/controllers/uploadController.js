@@ -1,7 +1,13 @@
 const imageModel = require("../models/imageModel");
 
-exports.getUpload = (req, res) => {
-  res.json({ ok: true, message: "file subido successfully" });
+//
+exports.getImages = async  (req, res) => {
+  try {
+    const image = await imageModel.find({})
+    res.json(image)
+  } catch (error) {
+    res.send(error)
+  }
 };
 
 //ENPOINT SUBIR FILE A SERVER
