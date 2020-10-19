@@ -5,59 +5,60 @@ import clienteAxios from '../../config/clienteAxios';
 
 function Formulario() {
     const [data, setData] = useState({
-        description: '',
-        title: ''
-    })
-    const [archivo, setArchivo] = useState('')
+      description: "",
+      title: "",
+    });
+    const [archivo, setArchivo] = useState("");
 
-    const {description, title} = data
+    const { description, title } = data;
 
+     //leer state de los datos
     const obtenerData = (e) => {
       setData({
         ...data,
         [e.target.name]: e.target.value,
       });
     };
-
-   const leerArchivo = (e) => {
-    setArchivo(e.target.files[0]);
-  };
+    //leer state del archivo para subirlo
+    const leerArchivo = (e) => {
+      setArchivo(e.target.files[0]);
+    };
 
     const subirData = async (e) => {
-        e.preventDefault();
+      e.preventDefault();
 
-        if (archivo.size > 2000000) {
-          Swal.fire({
-            icon: 'warning',
-            title: 'Tamaño Maximo 2MB',
-            showConfirmButton: true,
-            timer: 3500
-          })
-        }
-    
-        // formdata para subir archivos y string y number
-        const formData = new FormData()
-        formData.append('title', data.title)
-        formData.append('description', data.description)
-        formData.append('image', archivo)
-    
-        try {
-            const res = await clienteAxios.post("/upload", formData, {
-                headers: {
-                 'Content-Type': 'multipart/form-data'
-                }
-            });
-            console.log(res);
-            Swal.fire({
-                icon: 'success',
-                title: res.data.message,
-                showConfirmButton: false,
-                timer: 1500
-              })
-        } catch (error) {
-            console.log(error);
-        }
-      };
+      if (archivo.size > 2000000) {
+        Swal.fire({
+          icon: "warning",
+          title: "Tamaño Maximo 2MB",
+          showConfirmButton: true,
+          timer: 3500,
+        });
+      }
+
+      // formdata para subir archivos y string y number
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      formData.append("image", archivo);
+
+      try {
+        const res = await clienteAxios.post("/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        console.log(res);
+        Swal.fire({
+          icon: "success",
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
 
   return (

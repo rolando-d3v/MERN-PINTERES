@@ -14,6 +14,17 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage,
   limits: { fileSize: 1000 * 2000 },
+  fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype === "image/png" ||
+      file.mimetype === "image/jpg" ||
+      file.mimetype === "image/jpeg"
+    ) {
+      return cb(null, true);
+    } else {
+      cb("Error: archivo no valido");
+    }
+  },
 });
 
 module.exports = upload;

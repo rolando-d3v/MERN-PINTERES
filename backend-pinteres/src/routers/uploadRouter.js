@@ -1,7 +1,9 @@
 const {Router} = require('express');
 
-const {getUpload, postImage, deleteImage, getImage} = require('../controllers/uploadController')
+//MIDDLEWARE
 const upload = require('../middlewares/multer')
+
+const {getUpload, postImage, deleteImage, getImage} = require('../controllers/uploadController')
 
 //ROUTES
 const router = Router()
