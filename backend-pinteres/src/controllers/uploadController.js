@@ -17,7 +17,7 @@ exports.postImage = async (req, res) => {
     image.title = req.body.title;
     image.description = req.body.description;
     image.filename = req.file.filename;
-    image.path = "/upload/" + req.file.filename;
+    image.path = "/uploads/" + req.file.filename;
     image.originalname = req.file.originalname;
     image.mimetype = req.file.mimetype;
     image.size = req.file.size;
