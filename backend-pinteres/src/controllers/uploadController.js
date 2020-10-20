@@ -31,12 +31,15 @@ exports.postImage = async (req, res) => {
 };
 
 exports.getImage = async (req, res) => {
-  // idImage
-
-  res.json({
+  try {
+   const image = await imageModel.findById({_id: req.params.idImage})
+   res.json({
     ok: true,
-    message: "image encontrada successfully",
+    image
   });
+  } catch (error) {
+    res.send(error)
+  }
 };
 
 exports.deleteImage = async (req, res) => {

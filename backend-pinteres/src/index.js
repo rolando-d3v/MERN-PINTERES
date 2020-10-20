@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const path = require('path');
+// const {format} = require('timeago.js');
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -20,6 +21,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use(cors());
+
+//MIDDLEWARE GLOBAL
+// app.use((req, res, next) => {
+//   app.locals.format = format;
+//   next()
+// })
 
 //PUBLIC STATIC FILES
 // app.use(express.static('src/public'))

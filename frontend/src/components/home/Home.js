@@ -6,7 +6,7 @@ function Home() {
   const [dataImage, setDataImage] = useState([]);
 
   const obtenerImage = async () => {
-    const images = await clienteAxios.get("/upload");
+    const images = await clienteAxios.get("/image");
     setDataImage(images.data);
     console.log(images.data);
   };
@@ -19,9 +19,11 @@ function Home() {
     <div className="mt-4">
         <h4 className="text-center">Galeria de fotos 2020</h4>
       <div className='row' >
+          <div className='card-columns'>
         {dataImage.map((e_image) => (
           <Imagex e_image={e_image} key={e_image._id} />
         ))}
+          </div>
       </div>
     </div>
   );

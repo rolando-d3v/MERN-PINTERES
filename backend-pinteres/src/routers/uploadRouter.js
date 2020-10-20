@@ -7,7 +7,7 @@ const {getImages, postImage, deleteImage, getImage} = require('../controllers/up
 
 //ROUTES
 const router = Router()
-router.get('/upload' , getImages )
+router.get('/image' , getImages )
 router.post('/upload', upload.single("image") , postImage )
 router.get('/image/:idImage' , getImage )
 router.get('/image/:idImage/delete' , deleteImage )
