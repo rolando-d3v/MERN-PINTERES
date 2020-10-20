@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import Swal from 'sweetalert2'
 import clienteAxios from '../../config/clienteAxios';
 
-function Formulario() {
+function Formulario(props) {
     const [data, setData] = useState({
       description: "",
       title: "",
@@ -43,7 +43,7 @@ function Formulario() {
       formData.append("image", archivo);
 
       try {
-        const res = await clienteAxios.post("/upload", formData, {
+        const res = await clienteAxios.post("/image", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -55,6 +55,8 @@ function Formulario() {
           showConfirmButton: false,
           timer: 1500,
         });
+
+        props.history.push('/')
       } catch (error) {
         console.log(error);
       }
