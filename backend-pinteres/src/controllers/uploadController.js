@@ -30,6 +30,7 @@ exports.postImage = async (req, res) => {
   }
 };
 
+// OBTENER UNA  SOLA IMAGEN
 exports.getImage = async (req, res) => {
   try {
    const image = await imageModel.findById({_id: req.params.idImage})
@@ -42,7 +43,15 @@ exports.getImage = async (req, res) => {
   }
 };
 
+
+//DELETE UNA IMAGEN
 exports.deleteImage = async (req, res) => {
-  // idImage
-  res.json({ ok: true, message: "file remove successfully" });
+  try {
+    const image = await imageModel.findOneAndDelete({
+      _id: req.params.idImage,
+    });
+    res.json({ ok: true, message: `image  ${image.title} delete ` });
+  } catch (error) {
+    res.send(error);
+  }
 };

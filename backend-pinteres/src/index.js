@@ -22,12 +22,6 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use(cors());
 
-//MIDDLEWARE GLOBAL
-// app.use((req, res, next) => {
-//   app.locals.format = format;
-//   next()
-// })
-
 //PUBLIC STATIC FILES
 // app.use(express.static('src/public'))
 app.use(express.static(path.join(__dirname, 'public' )))
