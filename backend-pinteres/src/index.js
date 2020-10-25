@@ -1,7 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
 const path = require('path');
-// const {format} = require('timeago.js');
 const bodyParser = require("body-parser");
 const cors = require("cors");
 

@@ -1,6 +1,6 @@
 const imageModel = require("../models/imageModel");
 
-//
+//ENDPOINT PARA OBTENER TODAS LAS IMAGENES
 exports.getImages = async  (req, res) => {
   try {
     const image = await imageModel.find({})
