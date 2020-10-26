@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 import { format} from 'timeago.js';
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 function Imagex(props) {
   const { e_image } = props;
@@ -10,7 +10,7 @@ function Imagex(props) {
   let url = process.env.REACT_APP_BACKEND_URL;
   console.log(process.env.REACT_APP_BACKEND_URL);
 
-  let xex = `${Math.round(e_image.size / 102400, 2)} MB`;
+  let xex = `${Math.round(e_image.size / 1024, 2)} KB`;
 
   return (
     <Card

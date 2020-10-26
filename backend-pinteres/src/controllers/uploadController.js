@@ -1,4 +1,6 @@
 const imageModel = require("../models/imageModel");
+const path = require('path');
+const {unlink} = require('fs-extra');
 
 //ENDPOINT PARA OBTENER TODAS LAS IMAGENES
 exports.getImages = async  (req, res) => {
@@ -47,9 +49,10 @@ exports.getImage = async (req, res) => {
 //DELETE UNA IMAGEN
 exports.deleteImage = async (req, res) => {
   try {
-    const image = await imageModel.findOneAndDelete({
+  const image = await imageModel.findOneAndDelete({
       _id: req.params.idImage,
     });
+    await unlink(path.resolve(`./src/public${image.path}`))
     res.json({ ok: true, message: `image  ${image.title} delete ` });
   } catch (error) {
     res.send(error);

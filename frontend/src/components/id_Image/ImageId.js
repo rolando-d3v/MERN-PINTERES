@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import { format } from "timeago.js";
 import { Card, Button } from "react-bootstrap";
 import clienteAxios from "../../config/clienteAxios";
+import Swal from 'sweetalert2'
 
 function ImageId(props) {
   const idx = props.match.params.idImage;
@@ -23,9 +24,43 @@ function ImageId(props) {
 
   let url = process.env.REACT_APP_BACKEND_URL;
 
+
+  //ELIMINA IMAGEN DEL TOTAL
   const eliminarImage = async (id) => {
-    const deletex = await clienteAxios.delete(`/image/${id}/delete`)
-    console.log(deletex)
+    try {
+      Swal.fire({
+        title: 'Esta seguro?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+
+         //personaliza sweetalert2
+        customClass: {
+      popup: "popup-classx",
+      actions: 'actions-class',
+      confirmButton: 'confirm-button-class',
+      cancelButton: 'cancel-button-class',
+    }
+    
+      }).then( async (result) => {
+        if (result.value) {
+         const ref = await clienteAxios.delete(`/image/${id}`);
+         if(ref.status === 200) {
+          Swal.fire(
+            'Deleted!',
+            ref.data.message,
+            'success'
+          )
+          
+         }
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

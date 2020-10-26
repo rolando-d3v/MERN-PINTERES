@@ -8,8 +8,8 @@ const {getImages, postImage, deleteImage, getImage} = require('../controllers/up
 //ROUTES
 const router = Router()
 router.get('/image' , getImages )
-router.post('/image', upload.single("image") , postImage )
 router.get('/image/:idImage' , getImage )
-router.get('/image/:idImage/delete' , deleteImage )
+router.post('/image', upload.single("image") , postImage )
+router.delete('/image/:idImage' , deleteImage )
 
 module.exports = router
