@@ -19,11 +19,14 @@ function Formulario(props) {
         [e.target.name]: e.target.value,
       });
     };
+
+
     //leer state del archivo para subirlo
     const leerArchivo = (e) => {
       setArchivo(e.target.files[0]);
     };
 
+    //SUBE LA DATA AL BACKEND
     const subirData = async (e) => {
       e.preventDefault();
 
@@ -52,7 +55,7 @@ function Formulario(props) {
         Swal.fire({
           icon: "success",
           title: res.data.message,
-          showConfirmButton: false,
+          // showConfirmButton: false,
           timer: 1500,
         });
 
