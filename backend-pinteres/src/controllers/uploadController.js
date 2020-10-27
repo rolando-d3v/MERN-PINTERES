@@ -2,10 +2,12 @@ const imageModel = require("../models/imageModel");
 const path = require('path');
 const {unlink} = require('fs-extra');
 
-//ENDPOINT PARA OBTENER TODAS LAS IMAGENES
+//ENDPOINT PARA OBTENER TODAS LAS IMAGENES  
 exports.getImages = async  (req, res) => {
   try {
-    const image = await imageModel.find({})
+    // let limite = parseInt(req.query.limite) 
+    let limite = parseInt(req.query.limite ) || 5
+    const image = await imageModel.find({}).limit(limite)
     res.json(image)
   } catch (error) {
     res.send(error)
