@@ -26,4 +26,6 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public' )))
 
 //ROUTERS
-app.use("/", require("./routers/uploadRouter"));
+const version = 'api/v1'
+app.use(`/${version}`, require("./routers/uploadRouter"));
+app.use(`/${version}`, require("./routers/userRouter"));

@@ -5,8 +5,10 @@ import Imagex from "./Imagex";
 function Home() {
   const [dataImage, setDataImage] = useState([]);
 
+  const ver = process.env.REACT_APP_VER
+
   const obtenerImage = async () => {
-    const images = await clienteAxios.get("/image");
+    const images = await clienteAxios.get(`/${ver}/image`);
     setDataImage(images.data);
     console.log(images.data);
   };
