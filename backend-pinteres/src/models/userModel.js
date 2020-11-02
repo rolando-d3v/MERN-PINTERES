@@ -1,4 +1,5 @@
 const {Schema, model} = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 
 const rolesValidos = {
@@ -15,14 +16,17 @@ const userSchema = new Schema({
 }, {timestamps: true})
 
 
-// //FUNCION PARA NO MOSTRAR EL PASSWORD EN EL JSON DEL BACK-END
-// userSchema.methods.toJSON = function() {
-//     let user = this;
-//     let userObject = user.toObject();
-//     delete userObject.password;
-  
-//     return userObject;
-//   }
+//paginate
+userSchema.plugin(mongoosePaginate)
+
+
+//FUNCION PARA NO MOSTRAR EL PASSWORD EN EL JSON DEL BACK-END Y FRONTEND
+userSchema.methods.toJSON = function() {
+    let user = this;
+    let userObject = user.toObject();
+    delete userObject.password;
+    return userObject;
+  }
   
 
 
