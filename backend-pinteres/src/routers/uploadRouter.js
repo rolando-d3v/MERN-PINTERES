@@ -3,9 +3,9 @@ const {Router} = require('express');
 //MIDDLEWARE
 const upload = require('../middlewares/multer')
 
-const {getImages, postImage, deleteImage, getImage} = require('../controllers/uploadController')
 
 //ROUTES
+const {getImages, postImage, deleteImage, getImage} = require('../controllers/uploadController')
 const router = Router()
 router.get('/image' , getImages )
 router.get('/image/:idImage' , getImage )
