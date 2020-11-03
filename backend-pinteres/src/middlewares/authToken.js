@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 
+//-* VERIFICA SI TIENES TOKEN
 exports.verificaToken = (req, res, next) => {
   try {
     //si existe el token
@@ -19,6 +20,38 @@ exports.verificaToken = (req, res, next) => {
         next();
       }
     });
+  } catch (error) {
+    res.json({ ok: false, error });
+    next();
+  }
+};
+
+
+
+//-* ACCESO DE ADMINTOKEN  =>  ADMIN_ROLE
+exports.token_ADMIN_ROLE = (req, res, next) => {
+  try {
+    if (req.user.role !== "ADMIN_ROLE") {
+      res.json({ ok: false, message: 'Error: user no tiene role de Administrador' });
+    } else {
+      next()
+    }
+  } catch (error) {
+    res.json({ ok: false, error });
+    next();
+  }
+};
+
+
+
+//-* ACCESO DE SENTOKEN  =>  SEN_ROLE
+exports.token_SEN_ROLE = (req, res, next) => {
+  try {
+    if (req.user.role !== "SEN_ROLE") {
+      res.json({ ok: false, message: 'Error: user no tiene role de SEN' });
+    } else {
+      next()
+    }
   } catch (error) {
     res.json({ ok: false, error });
     next();

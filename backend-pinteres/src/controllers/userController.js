@@ -16,14 +16,14 @@ exports.createUser = async (req, res) => {
     // si existe email
     const existeEmail = await userModel.findOne({ email: req.body.email });
     if (existeEmail) {
-      res.json({ ok: false, message: "el email ya existe" });
+      res.json({ ok: false, message: "El email ya existe, ingresar otro" });
     } else {
       await user.save();
       console.log(user);
       res.json({ ok: true, message: "user created successfully" });
     }
   } catch (error) {
-    res.json({ ok: false, error });
+    res.json({ ok: false, error: error.message });
   }
 };
 
@@ -57,7 +57,11 @@ exports.getUserId = async (req, res) => {
 
 //_*  ENDPOINT PARA UPDATE A USER
 exports.updateUserId = async (req, res) => {
-    res.json({ok: true})
+    try {
+      
+    } catch (error) {
+      res.json({ok: false, error})
+    }
 }
 
 

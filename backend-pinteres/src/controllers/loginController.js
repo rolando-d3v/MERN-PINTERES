@@ -29,9 +29,9 @@ exports.loginUser = async (req, res) => {
           expiresIn: 60 * 60 * 10,
         }
       );
-
       res.json({ ok: true, message: "Success: Login correcto", token });
     }
+    
   } catch (error) {
     res.json({ ok: false, error });
   }
