@@ -32,7 +32,7 @@ exports.getUsers = async (req, res) => {
   try {
     let limit = parseInt(req.query.limit) || 2;
     let page = parseInt(req.query.page) || 1;
-    const user = await userModel.paginate({}, { limit, page });
+    const user = await userModel.paginate({estado: true}, { limit, page });
     res.json(user);
   } catch (error) {
     res.json({ ok: false, error });
@@ -41,7 +41,7 @@ exports.getUsers = async (req, res) => {
 
 
 //_*  ENDPOINT PARA OBTENER A USER
-exports.getUser = async (req, res) => {
+exports.getUserId = async (req, res) => {
     try {
       const user = await userModel.findById({ _id: req.params.idUser });
       if (!user) {
@@ -56,12 +56,28 @@ exports.getUser = async (req, res) => {
 
 
 //_*  ENDPOINT PARA UPDATE A USER
-exports.updateUser = async (req, res) => {
+exports.updateUserId = async (req, res) => {
     res.json({ok: true})
 }
 
 
 //_*  ENDPOINT PARA ELIMINAR A USER
-exports.deleteUser = async (req, res) => {
-    res.json({ok: true})
+exports.deleteUserId = async (req, res) => {
+    try {
+      const user = await userModel.findOneAndUpdate(
+        { _id: req.params.idUser },
+        { estado: false },
+        { new: true }
+      );
+
+      //valida si el user existe
+      if (!user) {
+        res.json({ ok: false, message: `el user no existe` });
+      } else {
+        res.json({ ok: true, message: `el user ${user.name} ha sido eliminado` });
+      }
+      
+    } catch (error) {
+      res.json({ ok: false, error });
+    }
 }

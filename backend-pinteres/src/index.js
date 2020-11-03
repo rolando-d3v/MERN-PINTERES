@@ -29,3 +29,4 @@ app.use(express.static(path.join(__dirname, 'public' )))
 const version = 'api/v1'
 app.use(`/${version}`, require("./routers/uploadRouter"));
 app.use(`/${version}`, require("./routers/userRouter"));
+app.use(`/${version}`, require("./routers/loginRouter"));
