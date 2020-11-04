@@ -5,12 +5,20 @@ const bcrypt = require('bcrypt');
 //_*  ENDPOINT PARA CREATED USER 
 exports.createUser = async (req, res) => {
   try {
+   
+    //genera un conteo del campo numero 
+    const rex = await userModel.find({}).sort({numero: -1})
+    console.log(rex[0].numero);
+    let numx = rex[0].numero + 1
+
+
     const user = new userModel({
       name: req.body.name,
       email: req.body.email,
       password: await bcrypt.hash(req.body.password, 10),
       estado: req.body.estado,
       role: req.body.role,
+      numero: req.body.numero || numx
     });
 
     // si existe email

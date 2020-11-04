@@ -12,6 +12,7 @@ const userSchema = new Schema({
     password:{type: String, required: true},
     estado:{type: Boolean, default: true},
     role:{type: String, default: 'USER_ROLE', enum: rolesValidos },
+    numero: {type: Number, default: 1}
 }, {timestamps: true})
 
 

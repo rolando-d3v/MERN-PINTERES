@@ -8,12 +8,17 @@ const cors = require("cors");
 //DB MONGODB
 require("./db");
 
+//crea un usuario por defecto en la db mongodb con name de prueba@gmail
+const {createUserRol} = require('./libs/uti');
+createUserRol()
+
 //SERVER APP
 const app = express();
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log("server on port " + port);
 });
+
 
 //MIDDLEWARE
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,4 +34,4 @@ app.use(express.static(path.join(__dirname, 'public' )))
 const version = 'api/v1'
 app.use(`/${version}`, require("./routers/uploadRouter"));
 app.use(`/${version}`, require("./routers/userRouter"));
-app.use(`/${version}`, require("./routers/loginRouter"));
+app.use(`/${version}`, require("./routers/loginRouter"));  
