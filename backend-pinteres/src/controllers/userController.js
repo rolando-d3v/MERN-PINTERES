@@ -66,7 +66,9 @@ exports.getUserId = async (req, res) => {
 //_*  ENDPOINT PARA UPDATE A USER
 exports.updateUserId = async (req, res) => {
     try {
+      res.json({ok: true})
       
+
     } catch (error) {
       res.json({ok: false, error})
     }
