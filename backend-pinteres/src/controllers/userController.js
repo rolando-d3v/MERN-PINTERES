@@ -2,6 +2,9 @@ const userModel = require('../models/userModel');
 const bcrypt = require('bcrypt');
 
 
+
+
+
 //_*  ENDPOINT PARA CREATED USER 
 exports.createUser = async (req, res) => {
   try {
@@ -34,6 +37,9 @@ exports.createUser = async (req, res) => {
     res.json({ ok: false, error: error.message });
   }
 };
+
+
+
 
 //_*  ENDPOINT PARA OBTENER ALL USERS
 exports.getUsers = async (req, res) => {

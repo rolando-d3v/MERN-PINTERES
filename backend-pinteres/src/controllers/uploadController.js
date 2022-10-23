@@ -18,6 +18,7 @@ exports.getImages = async  (req, res) => {
 exports.postImage = async (req, res) => {
   try {
     const image = new imageModel();
+
     image.title = req.body.title;
     image.description = req.body.description;
     image.filename = req.file.filename;
